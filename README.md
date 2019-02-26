@@ -2,7 +2,7 @@
 [![Gem Version](https://badge.fury.io/rb/lockie.svg)](https://badge.fury.io/rb/lockie)
 
 # Lockie
-Short description and motivation.
+A drop-in, none assuming warden based Password and JWT authentication for Rails 5.2++
 
 ## Usage
 How to use my plugin.
@@ -19,10 +19,6 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
-```bash
-$ gem install lockie
-```
 
 ## Contributing
 Contribution directions go here.
