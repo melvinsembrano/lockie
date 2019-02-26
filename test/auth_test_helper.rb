@@ -17,6 +17,15 @@ module AuthTestHelper
         }
       end
 
+      map "/xml" do
+        run lambda { |env|
+          env['warden'].authenticate
+          if env['warden'].user
+            [200, {'Content-Type' => 'text/xml'}, ['OK']]
+          end
+        }
+      end
+
       map "/web" do
         run lambda { |env|
           env['warden'].authenticate
