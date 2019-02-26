@@ -2,10 +2,8 @@
 [![Gem Version](https://badge.fury.io/rb/lockie.svg)](https://badge.fury.io/rb/lockie)
 
 # Lockie
-Short description and motivation.
+A drop-in, none assuming warden based Password and JWT authentication for Rails 5.2++
 
-## Usage
-How to use my plugin.
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -19,9 +17,57 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
-```bash
-$ gem install lockie
+## Usage
+Add the following lines to your authenticaiton model e.g. `User`:
+
+```ruby
+has_secure_password
+include Lockie::ModelHelper
+```
+
+Add the following lines to your base controller e.g. `ApplicationController`:
+```ruby
+include Lockie::ControllerHelper
+before_action :authenticate!
+```
+That's it! All your controllers that inherits `ApplicationController` are now protected.
+
+
+## Adding a session controller
+Creating a session controller is simple as:
+
+Session controller
+```ruby
+class SessionController < ApplicationController
+  skip_before_action :authenticate!, only: [:new]
+
+  def create
+    # on successful login redirect to your user's page
+    redirect_to root_url
+  end
+
+  def destroy
+    logout
+    redirect_to login_url
+  end
+end
+
+```
+
+routes.rb
+```ruby
+get 'login' => 'session#new'
+post 'login' => 'session#create'
+get 'logout' => 'session#destroy'
+```
+
+session/new.html.erb view:
+```ruby
+<%= form_tag(login_url) do -%>
+<%= email_field_tag 'email' %>
+<%= password_field_tag 'password' %>
+<%= submit_tag "Login" %>
+<% end -%>
 ```
 
 ## Contributing
