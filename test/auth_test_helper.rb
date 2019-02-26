@@ -4,7 +4,7 @@ module AuthTestHelper
       use Warden::Manager do |config|
         config.failure_app = Lockie::FailureApp
 
-        config.default_strategies [:email_password, :jwt, :failed]
+        config.default_strategies Lockie.config.default_strategies
 
       end
 

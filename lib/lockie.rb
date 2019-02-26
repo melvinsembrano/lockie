@@ -3,6 +3,7 @@ require 'warden'
 require_relative "lockie/rails"
 require_relative "lockie/log_helper"
 require_relative "lockie/model_helper"
+require_relative "lockie/controller_helper"
 require_relative "lockie/strategies/email_password"
 require_relative "lockie/strategies/jwt"
 require_relative "lockie/strategies/failed"
@@ -20,7 +21,7 @@ module Lockie
     def initialize
       @model_name = "User"
       @unauthenticated_path = "/login"
-      @default_strategies = [:email_passwrd, :jwt]
+      @default_strategies = [:email_password, :jwt]
       @hash_algorithm = "HS256"
     end
   end
