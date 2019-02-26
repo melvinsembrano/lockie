@@ -5,7 +5,18 @@
 A drop-in, none assuming warden based Password and JWT authentication for Rails 5.2++
 
 ## Usage
-How to use my plugin.
+Add the following lines to your authenticaiton model e.g. `User`:
+
+```ruby
+has_secure_password
+include Lockie::ModelHelper
+```
+
+Add the following lines to your base controller e.g. `ApplicationController`:
+```ruby
+include Lockie::ControllerHelper
+before_action :authenticate!
+```
 
 ## Installation
 Add this line to your application's Gemfile:
