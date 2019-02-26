@@ -4,7 +4,7 @@ module Lockie
 
     included do
       if respond_to?(:helper_method)
-        helper_method :current_user
+        helper_method "current_#{ Lockie.config.model_name.underscore }".to_sym
         helper_method :logged_in?
         helper_method :authenticated?
       end
@@ -14,7 +14,7 @@ module Lockie
         env['warden']
       end
 
-      def current_user(*args)
+      define_method "current_#{ Lockie.config.model_name.underscore }".to_sym do |*args|
         warden.user(*args)
       end
 

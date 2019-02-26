@@ -8,6 +8,7 @@ class Lockie::Strategies::JwtTest < ActionDispatch::IntegrationTest
   setup do
     Lockie.configure do |c|
       c.jwt_secret = "jwt-secret"
+      c.model_name = "User"
     end
   end
 

@@ -21,4 +21,6 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixtures :all
 end
 
-
+Lockie.configure do |c|
+  c.model_name = "User"
+end
