@@ -17,6 +17,8 @@ Add the following lines to your base controller e.g. `ApplicationController`:
 include Lockie::ControllerHelper
 before_action :authenticate!
 ```
+That's it! All your controllers that inherits `ApplicationController` are now protected.
+
 
 ## Adding a session controller
 Creating a session controller is simple as:
