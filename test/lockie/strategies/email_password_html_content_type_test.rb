@@ -1,13 +1,13 @@
 require 'test_helper'
 require 'auth_test_helper'
 
-class Lockie::Strategies::DefaultTest < ActionDispatch::IntegrationTest
+class Lockie::Strategies::EmailPasswordHtmlContentTypeTest < ActionDispatch::IntegrationTest
   include Warden::Test::Helpers
   include AuthTestHelper
 
   teardown { Warden.test_reset! }
 
-  test "should authenticate with email" do
+  test "content should authenticate with email" do
     user = users(:one)
     post "/web", params: {
       email: user.email,
@@ -16,7 +16,7 @@ class Lockie::Strategies::DefaultTest < ActionDispatch::IntegrationTest
     assert_equal "200", response.code
   end
 
-  test "should not authenticate invalid password" do
+  test "content should not authenticate invalid password" do
     user = users(:one)
     post "/web", params: {
       email: user.email,
@@ -24,6 +24,5 @@ class Lockie::Strategies::DefaultTest < ActionDispatch::IntegrationTest
     }
     assert_equal "302", response.code
   end
-
 
 end

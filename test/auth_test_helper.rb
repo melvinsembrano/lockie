@@ -8,7 +8,7 @@ module AuthTestHelper
 
       end
 
-      map "/" do
+      map "/json" do
         run lambda { |env|
           env['warden'].authenticate
           if env['warden'].user
