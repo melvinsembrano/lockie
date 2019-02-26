@@ -4,6 +4,19 @@
 # Lockie
 A drop-in, none assuming warden based Password and JWT authentication for Rails 5.2++
 
+
+## Installation
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'lockie'
+```
+
+And then execute:
+```bash
+$ bundle
+```
+
 ## Usage
 Add the following lines to your authenticaiton model e.g. `User`:
 
@@ -56,19 +69,6 @@ session/new.html.erb view:
 <%= submit_tag "Login" %>
 <% end -%>
 ```
-
-## Installation
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'lockie'
-```
-
-And then execute:
-```bash
-$ bundle
-```
-
 
 ## Contributing
 Contribution directions go here.
