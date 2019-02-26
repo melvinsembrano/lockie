@@ -1,3 +1,5 @@
+require 'jwt'
+
 module Lockie
   module ModelHelper
     extend ActiveSupport::Concern
@@ -10,7 +12,7 @@ module Lockie
 
         def create_token(payload = {})
           payload = {
-            aud: 'lh',
+            aud: 'lockie-app',
             sub: id,
             sub_type: self.class.name,
           }.merge(payload)
@@ -24,7 +26,7 @@ module Lockie
       def find_by_token(token)
         payload = JWT.decode(token, Lockie.config.jwt_secret, true, { algorithm: Lockie.config.hash_algorithm })
         auth_id = payload.first.fetch('sub') { nil }
-        auth_object.find(auth_id)
+        find(auth_id)
       end
 
     end

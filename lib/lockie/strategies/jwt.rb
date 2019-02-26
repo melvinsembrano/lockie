@@ -4,12 +4,16 @@ module Lockie
       include Lockie::ModelHelper
       include Lockie::LogHelper
 
+      def auth
+        @auth ||= ActionDispatch::Request.new(env)
+      end
+
       def headers
-        @headers ||= ActionDispatch::Http::Headers.new(env)
+        auth.headers
       end
 
       def valid?
-        headers['Authorization'].present? && headers['Authorization'].split.first.strip == 'Bearer'
+        headers['Authorization'].present?
       end
 
       def token
