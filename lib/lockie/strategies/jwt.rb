@@ -21,10 +21,13 @@ module Lockie
           auth = auth_object.find_by_token(token)
           if auth
             success! auth
+          else
+            set_message "Invalid token"
+            fail!
           end
-        rescue => err
+        rescue # => err
           set_message "Invalid token"
-          throw :warden, message: err.message
+          fail!
         end
       end
 

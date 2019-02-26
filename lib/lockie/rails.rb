@@ -8,10 +8,10 @@ module Lockie
         manager.default_strategies Lockie.config.default_strategies
         manager.failure_app = Lockie::FailureApp
 
-        manager.serialize_into_session(&:id)
-				manager.serialize_from_session do |id|
-					auth_object.find(id)
-				end
+        # manager.serialize_into_session(&:id)
+				# manager.serialize_from_session do |id|
+					# auth_object.find(id)
+				# end
 
       end
   end

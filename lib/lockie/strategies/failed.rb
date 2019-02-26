@@ -9,7 +9,7 @@ module Lockie
 
       def authenticate!
         set_message 'Unauthorised'
-        # throw :warden, message: 'Unauthorised'
+        fail!
       end
     end
   end

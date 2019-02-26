@@ -41,11 +41,11 @@ module Lockie
     end
 
     def message
-      @message ||= env['warden.message']
+      @message ||= request.env['warden.message']
     end
 
     def warden_options
-      env['warden.options']
+      request.env['warden.options']
     end
 
     def type

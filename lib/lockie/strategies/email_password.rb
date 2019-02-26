@@ -19,6 +19,7 @@ module Lockie
           success!(auth)
         else
           set_message('Invalid username or password')
+          fail!
         end
       end
 

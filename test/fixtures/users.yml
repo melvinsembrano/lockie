@@ -1,0 +1,4 @@
+one:
+  email: melvinsembrano@gmail.com
+  password_digest: <%= BCrypt::Password.create('Password123') %>
+

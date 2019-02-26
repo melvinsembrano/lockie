@@ -14,11 +14,14 @@ module Lockie
     attr_accessor :model_name
     attr_accessor :unauthenticated_path
     attr_accessor :default_strategies
+    attr_accessor :jwt_secret
+    attr_accessor :hash_algorithm
 
     def initialize
       @model_name = "User"
       @unauthenticated_path = "/login"
       @default_strategies = [:email_passwrd, :jwt]
+      @hash_algorithm = "HS256"
     end
   end
 
