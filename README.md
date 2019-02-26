@@ -18,6 +18,43 @@ include Lockie::ControllerHelper
 before_action :authenticate!
 ```
 
+## Adding a session controller
+Creating a session controller is simple as:
+
+Session controller
+```ruby
+class SessionController < ApplicationController
+  skip_before_action :authenticate!, only: [:new]
+
+  def create
+    # on successful login redirect to your user's page
+    redirect_to root_url
+  end
+
+  def destroy
+    logout
+    redirect_to login_url
+  end
+end
+
+```
+
+routes.rb
+```ruby
+get 'login' => 'session#new'
+post 'login' => 'session#create'
+get 'logout' => 'session#destroy'
+```
+
+session/new.html.erb view:
+```ruby
+<%= form_tag(login_url) do -%>
+<%= email_field_tag 'email' %>
+<%= password_field_tag 'password' %>
+<%= submit_tag "Login" %>
+<% end -%>
+```
+
 ## Installation
 Add this line to your application's Gemfile:
 
