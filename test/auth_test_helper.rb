@@ -12,7 +12,7 @@ module AuthTestHelper
         run lambda { |env|
           env['warden'].authenticate
           if env['warden'].user
-            [200, {'Content-Type' => 'text/json'}, ['OK']]
+            [200, {'Content-Type' => 'text/json'}, ["OK,#{env['warden'].user.email}"]]
           end
         }
       end
