@@ -9,7 +9,7 @@ A drop-in, none assuming warden based Password and JWT authentication for Rails 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lockie', '~> 0.2.1'
+gem 'lockie', '~> 0.2.2'
 ```
 
 And then execute:
@@ -30,7 +30,7 @@ Add the following lines to your base controller e.g. `ApplicationController`:
 include Lockie::ControllerHelper
 before_action :authenticate!
 ```
-That's it! All your controllers that inherits `ApplicationController` are now protected.
+That's it! All your controllers that inherits `ApplicationController` are now protected with `Authorization token` or with `email and password`.
 
 
 ## Adding a session controller
