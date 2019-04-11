@@ -70,6 +70,16 @@ session/new.html.erb view:
 <% end -%>
 ```
 
+config/initializers/lockie.rb
+```ruby
+Lockie.configure do |c|
+  c.jwt_secret = ENV.fetch("JWT_SECRET") { "i-am-jwt-secret" }
+  c.model_name = "Account" # default to 'User'
+  c.unauthenticated_path = "/some/login/path" # default to '/login'
+  c.hash_algorithm = "HS512" # default to 'HS256'
+end
+```
+
 ## Contributing
 Contribution directions go here.
 
