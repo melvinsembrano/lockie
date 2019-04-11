@@ -41,9 +41,8 @@ Session controller
 class SessionController < ApplicationController
   skip_before_action :authenticate!, only: [:new]
 
-  def create
-    # on successful login redirect to your user's page
-    redirect_to root_url
+  def create    
+    redirect_to root_url # redirect to your homepage if username and password is valid
   end
 
   def destroy
