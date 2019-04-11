@@ -69,6 +69,8 @@ session/new.html.erb view:
 <% end -%>
 ```
 
+## Configurations
+
 config/initializers/lockie.rb
 ```ruby
 Lockie.configure do |c|
