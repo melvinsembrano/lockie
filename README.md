@@ -69,7 +69,7 @@ session/new.html.erb view:
 <% end -%>
 ```
 
-## Configurations
+## Configuration
 
 config/initializers/lockie.rb
 ```ruby
