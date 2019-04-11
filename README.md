@@ -64,9 +64,9 @@ get 'logout' => 'session#destroy'
 session/new.html.erb view:
 ```ruby
 <%= form_tag(login_url) do -%>
-<%= email_field_tag 'email' %>
-<%= password_field_tag 'password' %>
-<%= submit_tag "Login" %>
+  <%= email_field_tag 'email' %>
+  <%= password_field_tag 'password' %>
+  <%= submit_tag "Login" %>
 <% end -%>
 ```
 
