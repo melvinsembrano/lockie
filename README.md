@@ -77,6 +77,10 @@ Lockie.configure do |c|
   c.model_name = "Account" # default to 'User'
   c.unauthenticated_path = "/some/login/path" # default to '/login'
   c.hash_algorithm = "HS512" # default to 'HS256'
+  
+  # add custom warden strategy
+  # default strategies and priority [:email_password, :jwt]
+  c.default_strategies = [:auth0, :jwt]
 end
 ```
 
