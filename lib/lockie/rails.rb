@@ -15,3 +15,6 @@ module Lockie
       end
   end
 end
+
+Warden::Manager.after_set_user do |record, warden, options|
+end
