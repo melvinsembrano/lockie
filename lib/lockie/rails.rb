@@ -7,10 +7,12 @@ module Lockie
         manager.default_strategies Lockie.config.default_strategies
         manager.failure_app = Lockie::FailureApp
 
-        manager.serialize_into_session(&:id)
-				manager.serialize_from_session do |id|
-          Lockie.config.model_name.classify.constantize.find(id)
-				end
+        if Lockie.config.serialize_session
+          manager.serialize_into_session(&:email)
+          manager.serialize_from_session do |email|
+            Lockie.config.model_name.classify.constantize.find_by_email(email)
+          end
+        end
 
       end
   end

@@ -33,11 +33,14 @@ module Lockie
     def html_response
       flash[type] = message if message
       self.status = 302
-      redirect_to Lockie.config.unauthenticated_path
+      callback_url = request.base_url + request.original_fullpath
+      uri = URI(Lockie.config.unauthenticated_path)
+      uri.query = (uri.query.to_s.split("&") << "callback_url=#{ callback_url }").join("&")
+      redirect_to uri.to_s
     end
 
     def message
-      @message ||= request.env['warden.message']
+      @message ||= request.env['warden.message'] || "Unauthorized"
     end
 
     def warden_options

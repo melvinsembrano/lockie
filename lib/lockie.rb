@@ -17,12 +17,14 @@ module Lockie
     attr_accessor :default_strategies
     attr_accessor :jwt_secret
     attr_accessor :hash_algorithm
+    attr_accessor :serialize_session
 
     def initialize
       @model_name = "User"
       @unauthenticated_path = "/login"
       @default_strategies = [:email_password, :jwt]
       @hash_algorithm = "HS256"
+      @serialize_session = true
     end
   end
 
