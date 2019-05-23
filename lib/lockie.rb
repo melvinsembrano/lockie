@@ -18,6 +18,7 @@ module Lockie
     attr_accessor :jwt_secret
     attr_accessor :hash_algorithm
     attr_accessor :serialize_session
+    attr_accessor :callback_url
 
     def initialize
       @model_name = "User"
@@ -25,6 +26,7 @@ module Lockie
       @default_strategies = [:email_password, :jwt]
       @hash_algorithm = "HS256"
       @serialize_session = true
+      @callback_url = true
     end
   end
 

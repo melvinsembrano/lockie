@@ -33,10 +33,14 @@ module Lockie
     def html_response
       flash[type] = message if message
       self.status = 302
-      callback_url = request.base_url + request.original_fullpath
-      uri = URI(Lockie.config.unauthenticated_path)
-      uri.query = (uri.query.to_s.split("&") << "callback_url=#{ callback_url }").join("&")
-      redirect_to uri.to_s
+      if Lockie.config.callback_url
+        callback_url = request.base_url + request.original_fullpath
+        uri = URI(Lockie.config.unauthenticated_path)
+        uri.query = (uri.query.to_s.split("&") << "callback_url=#{ callback_url }").join("&")
+        redirect_to uri.to_s
+      else
+        redirect_to Lockie.config.unauthenticated_path
+      end
     end
 
     def message
