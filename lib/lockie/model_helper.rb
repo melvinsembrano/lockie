@@ -29,6 +29,14 @@ module Lockie
         find(auth_id)
       end
 
+      def create_token(payload: {}, secret:)
+        payload = {
+          aud: 'lockie-app',
+        }.merge(payload)
+
+        JWT.encode(payload, secret, 'HS256')
+      end
+
     end
   end
 end

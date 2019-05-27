@@ -19,6 +19,7 @@ module Lockie
     attr_accessor :hash_algorithm
     attr_accessor :serialize_session
     attr_accessor :callback_url
+    attr_accessor :scopes
 
     def initialize
       @model_name = "User"
@@ -27,6 +28,7 @@ module Lockie
       @hash_algorithm = "HS256"
       @serialize_session = true
       @callback_url = true
+      @scopes = []
     end
   end
 

@@ -14,6 +14,10 @@ module Lockie
           end
         end
 
+        Lockie.config.scopes.each do |scope|
+          manager.scope_defaults *scope
+        end
+
       end
   end
 end
