@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "warden", "~> 1.2"
   spec.add_dependency "jwt", "~> 2.1"
 
-  spec.add_development_dependency "sqlite3", "~> 1.3.6"
+  spec.add_development_dependency "sqlite3", "~> 1.4.1"
   spec.add_development_dependency "bcrypt", "~> 3.1.7"
   spec.add_development_dependency "pry", "~> 0.12"
 end
