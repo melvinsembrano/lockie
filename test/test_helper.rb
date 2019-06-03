@@ -24,3 +24,9 @@ end
 Lockie.configure do |c|
   c.model_name = "User"
 end
+
+def reset_lockie!
+  Lockie.configure do |c| 
+    c = Lockie::Configuration.new
+  end
+end

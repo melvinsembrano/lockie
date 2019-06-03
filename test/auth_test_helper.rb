@@ -34,6 +34,15 @@ module AuthTestHelper
           end
         }
       end
+
+      map "/hello" do
+        run lambda { |env|
+          if env['warden'].user
+            [200, {'Content-Type' => 'text/html'}, ['OK']]
+          end
+        }
+      end
+
     end
   end
 end

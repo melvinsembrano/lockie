@@ -20,6 +20,7 @@ module Lockie
     attr_accessor :serialize_session
     attr_accessor :callback_url
     attr_accessor :scopes
+    attr_accessor :serializer_to_session, :serializer_from_session
 
     def initialize
       @model_name = "User"
@@ -29,6 +30,8 @@ module Lockie
       @serialize_session = true
       @callback_url = true
       @scopes = []
+      @serializer_to_session = nil
+      @serializer_from_session = nil
     end
   end
 

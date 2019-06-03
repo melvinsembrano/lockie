@@ -5,7 +5,16 @@ class Lockie::Strategies::EmailPasswordHtmlContentTypeTest < ActionDispatch::Int
   include Warden::Test::Helpers
   include AuthTestHelper
 
-  teardown { Warden.test_reset! }
+  setup do
+    Lockie.configure do |c|
+      c.model_name = "User"
+    end
+  end
+
+  teardown do 
+    reset_lockie!
+    Warden.test_reset!
+  end
 
   test "content should authenticate with email" do
     user = users(:one)
