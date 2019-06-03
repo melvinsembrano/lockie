@@ -9,7 +9,7 @@ A drop-in, none assuming warden based Password and JWT authentication for Rails 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lockie', '~> 0.2.6'
+gem 'lockie', '~> 0.2.7'
 ```
 
 And then execute:
@@ -81,6 +81,10 @@ Lockie.configure do |c|
   
   # add custom warden strategy, default strategies and priority are [:email_password, :jwt]
   c.default_strategies = [:auth0, :jwt]
+  
+  # set custom session serializer
+  c.serializer_to_session = proc {|u| u.id }
+  c.serializer_from_session = proc {|id| User.find(id) }
 end
 ```
 
