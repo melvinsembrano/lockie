@@ -89,7 +89,7 @@ Lockie.configure do |c|
   # set custom scopes
   c.scopes = [
     [:api, { store: false, strategies: [:jwt]}],
-    [:system, { store: false, strategies: [:system_jwt]}]
+    [:web, { store: true, strategies: [:email_password]}]
   ]
 end
 ```
