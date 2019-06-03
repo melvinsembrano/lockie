@@ -85,6 +85,12 @@ Lockie.configure do |c|
   # set custom session serializer
   c.serializer_to_session = proc {|u| u.id }
   c.serializer_from_session = proc {|id| User.find(id) }
+  
+  # set custom scopes
+  c.scopes = [
+    [:api, { store: false, strategies: [:jwt]}],
+    [:system, { store: false, strategies: [:system_jwt]}]
+  ]
 end
 ```
 
