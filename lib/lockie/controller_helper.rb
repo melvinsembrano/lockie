@@ -3,8 +3,9 @@ module Lockie
     extend ActiveSupport::Concern
 
     included do
+
       if respond_to?(:helper_method)
-        helper_method "current_#{ Lockie.config.model_name.underscore }".to_sym
+        helper_method "current_#{ Lockie.config.model_name.underscore.gsub(/\//, '_') }".to_sym
         helper_method :logged_in?
         helper_method :authenticated?
       end
@@ -14,7 +15,7 @@ module Lockie
         env['warden']
       end
 
-      define_method "current_#{ Lockie.config.model_name.underscore }".to_sym do |*args|
+      define_method "current_#{ Lockie.config.model_name.underscore.gsub(/\//, '_') }".to_sym do |*args|
         warden.user(*args)
       end
 

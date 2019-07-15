@@ -7,7 +7,7 @@ class Lockie::ControllerHelper::Test < ActiveSupport::TestCase
     Warden.test_reset!
   end
 
-  test "current authe helper should be #current_user" do
+  test "current auth helper should be #current_user" do
     Lockie.configure do |c|
       c.model_name = "User"
     end
@@ -18,7 +18,7 @@ class Lockie::ControllerHelper::Test < ActiveSupport::TestCase
     assert controller.respond_to?(:current_user)
   end
 
-  test "current authe helper should be #current_account" do
+  test "current auth helper should be #current_account" do
     Lockie.configure do |c|
       c.model_name = "Account"
     end
@@ -27,6 +27,17 @@ class Lockie::ControllerHelper::Test < ActiveSupport::TestCase
     end
     controller = AccountAuthController.new
     assert controller.respond_to?(:current_account)
+  end
+
+  test "current auth helper should be #current_mod_account" do
+    Lockie.configure do |c|
+      c.model_name = "Mod::Account"
+    end
+    class ModAccountAuthController
+      include Lockie::ControllerHelper
+    end
+    controller = ModAccountAuthController.new
+    assert controller.respond_to?(:current_mod_account)
   end
 
   # test "should serialize session properly with custom serializer" do
