@@ -9,7 +9,7 @@ A drop-in, none assuming warden based Password and JWT authentication for Rails 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lockie', '~> 0.2.7'
+gem 'lockie', '~> 0.2.8'
 ```
 
 And then execute:
