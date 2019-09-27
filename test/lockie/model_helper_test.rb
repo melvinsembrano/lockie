@@ -40,6 +40,23 @@ class Lockie::ControllerHelper::Test < ActiveSupport::TestCase
     assert_equal record, User.find_by_token(token)
   end
 
+  test "#self.find_by_token should raise JWT::DecodeError" do
+    token = 'invalid token'
+    assert_raises(JWT::DecodeError) {
+      User.find_by_token(token)
+    }
+  end
+
+  test "#self.find_by_token should raise JWT::VerificationError" do
+    token = User.create_token(payload: {
+      sub_type: "System",
+      sub: "101",
+    }, secret: 'different-secret')
+    assert_raises(JWT::VerificationError) {
+      User.find_by_token(token)
+    }
+  end
+
   test "#self.extract_auth_id" do
     payload = {"aud"=>"lockie-app", "sub"=>"1", "sub_type"=>"User"}
     assert_equal "1", User.extract_auth_id(payload)
@@ -49,11 +66,21 @@ class Lockie::ControllerHelper::Test < ActiveSupport::TestCase
     token = User.create_token(payload: {
       sub_type: "System",
       sub: "101",
-    }, secret: Lockie.config.jwt_secret)
+    }, secret: 'i-am-secret')
 
-    payloads = User.decode_token token
+    payloads = User.decode_token token, secret: 'i-am-secret'
     assert_equal "101", payloads.first.dig("sub")
     assert_equal "System", payloads.first.dig("sub_type")
   end
 
+  test "#self.decode_token should fail with invalid secret" do
+    token = User.create_token(payload: {
+      sub_type: "System",
+      sub: "101",
+    }, secret: 'i-am-secret')
+
+    assert_raises(JWT::VerificationError) {
+      User.decode_token token, secret: 'i-am-not-a-secret'
+    }
+  end
 end

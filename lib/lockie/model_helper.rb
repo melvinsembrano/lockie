@@ -37,8 +37,8 @@ module Lockie
         payload.fetch('sub') { nil }
       end
 
-      def decode_token(token)
-        JWT.decode(token, Lockie.config.jwt_secret, true, { algorithm: Lockie.config.hash_algorithm })
+      def decode_token(token, secret: Lockie::config.jwt_secret)
+        JWT.decode(token, secret, true, { algorithm: Lockie.config.hash_algorithm })
       end
 
       def create_token(payload: {}, secret: , hash_algorithm: 'HS256')
