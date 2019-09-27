@@ -24,17 +24,29 @@ module Lockie
     class_methods do
 
       def find_by_token(token)
-        payload = JWT.decode(token, Lockie.config.jwt_secret, true, { algorithm: Lockie.config.hash_algorithm })
-        auth_id = payload.first.fetch('sub') { nil }
-        find(auth_id)
+        payloads = decode_token token
+        find_auth payloads.first
       end
 
-      def create_token(payload: {}, secret:)
+      def find_auth(payload)
+        auth_id = extract_auth_id payload
+        find auth_id
+      end
+
+      def extract_auth_id(payload)
+        payload.fetch('sub') { nil }
+      end
+
+      def decode_token(token, secret: Lockie::config.jwt_secret)
+        JWT.decode(token, secret, true, { algorithm: Lockie.config.hash_algorithm })
+      end
+
+      def create_token(payload: {}, secret: , hash_algorithm: 'HS256')
         payload = {
           aud: 'lockie-app',
         }.merge(payload)
 
-        JWT.encode(payload, secret, 'HS256')
+        JWT.encode(payload, secret, hash_algorithm)
       end
 
     end
