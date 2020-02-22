@@ -94,6 +94,29 @@ Lockie.configure do |c|
 end
 ```
 
+## Testing
+
+Using `Warden::Test::Helpers` https://github.com/wardencommunity/warden/wiki/testing testing is simple and straight forward
+
+```
+include Warden::Test::Helpers
+
+before do
+  @user = users(:one)
+  login_as @user
+  
+end
+after { Warden.test_reset! }
+```
+
+### Testing JSON Api with token
+
+```
+get articles_url(format: :json), headers: {
+  Authorization: "Bearer #{ @user.create_token }"
+}
+```
+
 ## Contributing
 Contribution directions go here.
 
