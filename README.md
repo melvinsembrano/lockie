@@ -101,12 +101,12 @@ Using `Warden::Test::Helpers` https://github.com/wardencommunity/warden/wiki/tes
 ```
 include Warden::Test::Helpers
 
-before do
+setup do
   @user = users(:one)
   login_as @user
   
 end
-after { Warden.test_reset! }
+teardown { Warden.test_reset! }
 ```
 
 ### Testing JSON Api with token
