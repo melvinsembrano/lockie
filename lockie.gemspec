@@ -31,5 +31,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "sqlite3", "~> 1.4.1"
   spec.add_development_dependency "bcrypt", "~> 3.1.7"
-  spec.add_development_dependency "pry", "~> 0.12"
+  # spec.add_development_dependency "pry", "~> 0.12"
+  spec.add_development_dependency "byebug", "~> 11.1.3"
 end
