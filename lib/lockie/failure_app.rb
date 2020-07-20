@@ -35,7 +35,7 @@ module Lockie
       self.status = 302
       if Lockie.config.callback_url
         callback_url = request.base_url + request.original_fullpath
-        uri = URI(Lockie.config.unauthenticated_path)
+        uri = URI(warden_options[:unauthenticated_path] || Lockie.config.unauthenticated_path)
         uri.query = (uri.query.to_s.split("&") << "callback_url=#{ callback_url }").join("&")
         redirect_to uri.to_s
       else
@@ -56,7 +56,7 @@ module Lockie
     end
 
     def warden
-      env['warden']
+      request.env['warden']
     end
 
   end

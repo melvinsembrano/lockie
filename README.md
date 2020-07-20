@@ -9,7 +9,7 @@ A drop-in, none assuming warden based Password and JWT authentication for Rails 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lockie', '~> 0.2.13'
+gem 'lockie', '~> 0.2.14'
 ```
 
 And then execute:
@@ -89,7 +89,8 @@ Lockie.configure do |c|
   # set custom scopes
   c.scopes = [
     [:api, { store: false, strategies: [:jwt]}],
-    [:web, { store: true, strategies: [:email_password]}]
+    [:web, { store: true, strategies: [:email_password]}],
+    [:admin, { store: true, strategies: [:email_password], unauthenticated_path: "/login-admin" }]
   ]
 end
 ```
