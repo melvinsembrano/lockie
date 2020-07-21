@@ -30,6 +30,7 @@ module Lockie
       def authenticated?(*args)
         warden.authenticated?(*args)
       end
+
       alias logged_in? authenticated?
 
       def logout(*args)
@@ -38,5 +39,6 @@ module Lockie
       end
 
     end
+
   end
 end
