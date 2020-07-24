@@ -21,6 +21,7 @@ module Lockie
     attr_accessor :callback_url
     attr_accessor :scopes
     attr_accessor :serializer_to_session, :serializer_from_session
+    attr_accessor :session_timeout
 
     def initialize
       @model_name = "User"
@@ -32,6 +33,7 @@ module Lockie
       @scopes = []
       @serializer_to_session = nil
       @serializer_from_session = nil
+      @session_timeout = 3.hours
     end
   end
 

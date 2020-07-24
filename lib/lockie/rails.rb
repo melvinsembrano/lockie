@@ -23,4 +23,13 @@ module Lockie
 end
 
 Warden::Manager.after_set_user do |record, warden, options|
+  session_key = "warden.uls-#{record.class.name.underscore}-#{record.id}"
+  last_session_access = warden.request.session[session_key]
+
+  if last_session_access && Time.parse(last_session_access) + Lockie.config.session_timeout < Time.now
+    # session expired
+    warden.logout
+  end
+
+  warden.request.session[session_key] = Time.now
 end
