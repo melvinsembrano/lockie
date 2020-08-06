@@ -24,7 +24,7 @@ end
 
 Warden::Manager.after_authentication do |record, warden, options|
   session_key = "warden.uls-#{record.class.name.underscore}-#{record.id}"
-  warden.request.session[session_key] = Time.now + Lockie.config.session_timeout
+  warden.request.session[session_key] = (Time.now + Lockie.config.session_timeout).to_s
 end
 
 Warden::Manager.after_set_user do |record, warden, options|
