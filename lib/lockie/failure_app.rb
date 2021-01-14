@@ -35,7 +35,6 @@ module Lockie
       self.status = 302
       if Lockie.config.callback_url
         uri = URI(warden_options[:unauthenticated_path] || Lockie.config.unauthenticated_path)
-        #
         # only add callback_url if original path is not the same with login path
         unless request.original_fullpath == uri.path
           callback_url = request.base_url + request.original_fullpath
