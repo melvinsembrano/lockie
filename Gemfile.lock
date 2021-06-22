@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lockie (0.2.14)
+    lockie (0.3.1)
       jwt (~> 2.1)
       rails (>= 5.2)
       warden (~> 1.2)
@@ -72,7 +72,7 @@ GEM
     erubi (1.9.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    i18n (1.8.3)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jwt (2.2.1)
     loofah (2.6.0)
@@ -149,4 +149,4 @@ DEPENDENCIES
   sqlite3 (~> 1.4.1)
 
 BUNDLED WITH
-   1.17.3
+   2.1.4

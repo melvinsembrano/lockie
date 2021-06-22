@@ -23,6 +23,14 @@ module Lockie
     attr_accessor :serializer_to_session, :serializer_from_session
     attr_accessor :session_timeout
 
+    attr_accessor :after_set_user
+    attr_accessor :after_authentication
+    attr_accessor :after_fetch
+    attr_accessor :before_failure
+    attr_accessor :after_failed_fetch
+    attr_accessor :before_logout
+    attr_accessor :on_request
+
     def initialize
       @model_name = "User"
       @unauthenticated_path = "/login"
