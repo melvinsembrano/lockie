@@ -41,8 +41,12 @@ Session controller
 class SessionController < ApplicationController
   skip_before_action :authenticate!, only: [:new]
 
+  def new
+    session[:callback_url] = params[:callback_url] if params[:callback_url]
+  end
+  
   def create    
-    redirect_to root_url # redirect to your homepage if username and password is valid
+    redirect_to session[:callback_url] || root_url
   end
 
   def destroy
