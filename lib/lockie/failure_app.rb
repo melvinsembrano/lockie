@@ -47,7 +47,7 @@ module Lockie
     end
 
     def message
-      @message ||= request.env['warden.message'] || "Unauthorized"
+      @message ||= request.env['warden.message'] 
     end
 
     def warden_options
