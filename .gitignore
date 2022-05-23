@@ -11,3 +11,4 @@ test/dummy/tmp/
 .DS_Store
 .byebug_history
 .ruby-version
+*.gem
