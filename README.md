@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/melvinsembrano/lockie.svg?branch=master)](https://travis-ci.org/melvinsembrano/lockie)
+[![Build Status](https://github.com/melvinsembrano/lockie/actions/workflows/00_test.yml/badge.svg)](https://github.com/melvinsembrano/lockie/actions/workflows/00_test.yml)
 [![Gem Version](https://badge.fury.io/rb/lockie.svg)](https://badge.fury.io/rb/lockie)
 
 # Lockie
@@ -9,7 +9,7 @@ A drop-in, none assuming warden based Password and JWT authentication for Rails 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'lockie', '~> 0.4.5'
+gem 'lockie', '~> 0.5.1'
 ```
 
 And then execute:
