@@ -13,7 +13,7 @@ module Lockie
     def unauthenticated
       if request.xhr?
         api_response(:text)
-      elsif request.format.to_sym == :json || request.content_type.to_s.split("/").last == 'json'
+      elsif request.format.to_sym == :json || request.media_type.to_s.split("/").last == 'json'
         api_response(:json)
       else
         html_response
