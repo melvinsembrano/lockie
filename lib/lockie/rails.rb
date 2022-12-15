@@ -5,7 +5,7 @@ module Lockie
 
     config.app_middleware.use Warden::Manager do |manager|
         manager.default_strategies Lockie.config.default_strategies
-        manager.failure_app = Lockie::FailureApp
+        manager.failure_app = Lockie.config.failure_app
 
         if Lockie.config.serialize_session
           serializer_to_session = Lockie.config.serializer_to_session || proc { |u| [u.class.name, u.id] }
