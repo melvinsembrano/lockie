@@ -33,21 +33,28 @@ module Lockie
     def html_response
       flash[type] = message if message
       self.status = 302
+
+      unauthenticated_path = if warden_options[:scope]
+        warden.config.dig(:scope_defaults, warden_options[:scope], :unauthenticated_path) || Lockie.config.unauthenticated_path
+      else
+        Lockie.config.unauthenticated_path
+      end
+
+      uri = URI(unauthenticated_path)
+
       if Lockie.config.callback_url
-        uri = URI(warden_options[:unauthenticated_path] || Lockie.config.unauthenticated_path)
         # only add callback_url if original path is not the same with login path
         unless request.original_fullpath == uri.path
           callback_url = request.base_url + request.original_fullpath
           uri.query = (uri.query.to_s.split("&") << "callback_url=#{ callback_url }").join("&")
         end
-        redirect_to uri.to_s
-      else
-        redirect_to Lockie.config.unauthenticated_path
       end
+
+      redirect_to uri.to_s
     end
 
     def message
-      @message ||= request.env['warden.message'] 
+      @message ||= request.env['warden.message']
     end
 
     def warden_options
